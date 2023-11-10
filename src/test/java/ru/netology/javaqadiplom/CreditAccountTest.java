@@ -8,13 +8,23 @@ public class CreditAccountTest {
     @Test
     public void shouldAddToPositiveBalance() {
         CreditAccount account = new CreditAccount(
-                0,
+                3_000,
                 5_000,
                 15
         );
 
         account.add(3_000);
 
-        Assertions.assertEquals(3_000, account.getBalance());
+        Assertions.assertEquals(6_000, account.getBalance());
+    }
+
+
+    @Test
+    public void shouldPayFromPositiveBalance() {
+        CreditAccount account = new CreditAccount(1000, 5000, 15);
+        account.pay(500);
+
+        Assertions.assertEquals(500, account.getBalance());
+
     }
 }
