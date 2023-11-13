@@ -31,7 +31,7 @@ public class SavingAccountTest {
         account.pay(1800);
 
         Assertions.assertFalse(account.pay(1800));
-        Assertions.assertEquals(2000, account.getBalance());
+        Assertions.assertEquals(200, account.getBalance());
     }
 
 }
