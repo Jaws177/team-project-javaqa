@@ -17,7 +17,68 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(6_000, account.getBalance());
     }
+    @Test
+    public void shouldAddToNegativeBalance() {
+        CreditAccount account = new CreditAccount(
+                0,
+                5_000,
+                15
+        );
 
+        Assertions.assertFalse(account.add(-1));
+        Assertions.assertEquals(0, account.getBalance());
+    }
+
+    @Test
+    public void shouldAddToNullBalance_Add() {
+        CreditAccount account = new CreditAccount(
+                0,
+                5_000,
+                15
+        );
+
+
+        Assertions.assertFalse(account.add(0));
+        Assertions.assertEquals(0, account.getBalance());
+    }
+
+    @Test
+    public void shouldAddLessThanCreditLimit() {
+        CreditAccount account = new CreditAccount(
+                0,
+                5_000,
+                15
+        );
+
+        account.pay(2500);
+
+        Assertions.assertEquals(-2500, account.getBalance());
+    }
+
+    @Test
+    public void shouldAddMoreThanCreditLimit() {
+        CreditAccount account = new CreditAccount(
+                0,
+                5_000,
+                15
+        );
+
+        Assertions.assertFalse(account.pay(6000));
+        Assertions.assertEquals(0, account.getBalance());
+    }
+
+    @Test
+    public void shouldAddToNullBalance_Pay() {
+        CreditAccount account = new CreditAccount(
+                0,
+                5_000,
+                15
+        );
+
+
+        Assertions.assertFalse(account.pay(0));
+        Assertions.assertEquals(0, account.getBalance());
+    }
 
     @Test
     public void shouldPayFromPositiveBalance() {
