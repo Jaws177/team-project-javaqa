@@ -18,4 +18,20 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(2_000 + 3_000, account.getBalance());
     }
+     @Test
+    public void shouldAddLessThanMinBalance() {
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                5
+        );
+
+
+        account.pay(1800);
+
+        Assertions.assertFalse(account.pay(1800));
+        Assertions.assertEquals(200, account.getBalance());
+    }
+
 }
